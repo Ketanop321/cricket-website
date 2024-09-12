@@ -21,16 +21,16 @@ This project is a cricket-themed website for XYZ Organization, which is dedicate
 
  1. Cloning the Repository
 
-git clone https://github.com/Ketanop321/cricket-website.git
+ #git clone https://github.com/Ketanop321/cricket-website.git
 This will download the repository to their local machine.
 
 2. Install Dependencies
 After cloning the repository, they will need to install the project dependencies listed in package.json. This can be done with the following steps:
 
-cd cricket-website
+#cd cricket-website
 Install dependencies (this will install all necessary packages for the project):
 
-npm install
+#npm install
 This will use the package-lock.json to ensure all dependencies are installed exactly as they were in your local setup.
 
 3. Run the Project Locally
@@ -38,7 +38,7 @@ Once the dependencies are installed, they can run the project on their local mac
 
 Start the development server:
 
-npm start
+#npm start
 This will start the project and open it in the browser at http://localhost:3000.
 
 4. Make Changes and Collaborate
@@ -46,16 +46,16 @@ After setting up the project, your friend can start making changes and collabora
 
 Create a new branch before making any changes:
 
-git checkout -b new-feature-branch
+#git checkout -b new-feature-branch
 Commit changes when they’re done with their feature:
 
 
-git add .
-git commit -m "Description of the feature or fix"
+#git add .
+#git commit -m "Description of the feature or fix"
 Push the changes to the remote repository:
 
 
-git push origin new-feature-branch
+#git push origin new-feature-branch
 5. Opening a Pull Request (PR)
 Once the changes are pushed, your friend can open a pull request to have the changes reviewed and merged into the main branch.
 
