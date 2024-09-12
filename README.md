@@ -17,27 +17,23 @@ Follow these steps to set up the project locally:
 
 Clone the Repository:
 
-bash
-Copy code
+
 git clone https://github.com/Ketanop321/cricket-website.git
 This will download the repository to your local machine.
 
 Navigate to the Project Directory:
 
-bash
-Copy code
+
 cd cricket-website
 Install the Project Dependencies:
 
-bash
-Copy code
+
 npm install
 This command installs all necessary packages listed in the package.json file.
 
 Run the Project Locally:
 
-bash
-Copy code
+
 npm start
 This will start the development server and open the project in your browser at http://localhost:3000.
 
@@ -46,21 +42,18 @@ If you want to contribute to the project, follow these steps:
 
 Create a new branch for your feature or bug fix:
 
-bash
-Copy code
+
 git checkout -b feature/your-feature
 Make your changes to the project code.
 
 Stage and commit your changes:
 
-bash
-Copy code
+
 git add .
 git commit -m "Add a descriptive commit message here"
 Push your changes to your forked repository:
 
-bash
-Copy code
+
 git push origin feature/your-feature
 Open a Pull Request (PR):
 
@@ -73,8 +66,6 @@ Select your branch and compare it with the main branch, then create the PR.
 🔄 Keeping Your Fork Up to Date
 If changes are made to the main repository, you can sync your fork by running:
 
-bash
-Copy code
 git pull origin main
 This will fetch the latest changes from the main branch and keep your local copy updated.
 
