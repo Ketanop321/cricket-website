@@ -4,7 +4,6 @@ import Navbar from './navigation';
 import HomePage from './homepage';
 import TournamentPage from './tournament';
 import Footer from './footer'
-import ExploreTournaments from './exploretournaments'
 import ContactUs from './contactus';
 import LearnMorePage from './LearnMorePage';
 import RegisterPage from './RegisterPage';
@@ -23,7 +22,6 @@ function App() {
           <Route path="/tournaments" element={<TournamentPage />} />
           <Route path="/learn-more" element={<LearnMorePage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path='/exploretournaments' element={<ExploreTournaments/>} />
           <Route path='/contact' element={<ContactUs/>} />
           <Route path='/players' element={<PlayerPage/>} />
           <Route path='/teams' element={<TeamPage/>} />
