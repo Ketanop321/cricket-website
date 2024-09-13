@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationForm from './registrationform'; // Import the RegistrationForm component
+import BackToTopButton from './components/backtotop';
 const tournamentsData = [
   {
     id: 1,
@@ -136,6 +137,7 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+      <BackToTopButton/>
     </div>
   );
 };
