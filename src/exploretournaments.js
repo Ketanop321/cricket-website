@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const tournamentsData = [
   {
@@ -28,6 +29,16 @@ const tournamentsData = [
 ];
 
 const ExploreTournaments = () => {
+  const navigate = useNavigate();
+
+  const handleLearnMore = (tournament) => {
+    navigate('/learn-more', { state: { tournament } });
+  };
+
+  const handleRegister = (tournament) => {
+    navigate('/register', { state: { tournament } });
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Explore Our Tournaments</h1>
@@ -44,10 +55,16 @@ const ExploreTournaments = () => {
               <p className="text-gray-600 mb-4"><strong>Location:</strong> {tournament.location}</p>
               <p className="text-gray-700 mb-6">{tournament.description}</p>
               <div className="text-center">
-                <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-6 py-2 rounded-lg mr-4">
+                <button
+                  className="bg-yellow-500 hover:bg-yellow-400 text-white px-6 py-2 rounded-lg mr-4"
+                  onClick={() => handleLearnMore(tournament)}
+                >
                   Learn More
                 </button>
-                <button className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg">
+                <button
+                  className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg"
+                  onClick={() => handleRegister(tournament)}
+                >
                   Register Now
                 </button>
               </div>
