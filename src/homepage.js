@@ -138,9 +138,6 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-
-      {/* Live Scores Section */}
-      <LiveScores />
     </div>
   );
 };
