@@ -3,16 +3,22 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './navigation';
 import HomePage from './homepage';
 import TournamentPage from './tournament';
+import Footer from './footer'
+import ExploreTournaments from './exploretournaments'
+import ContactUs from './contactus';
 
 function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/tournaments" element={<TournamentPage />} />
+          <Route path='/exploretournaments' element={<ExploreTournaments/>} />
+          <Route path='/contact' element={<ContactUs/>} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
