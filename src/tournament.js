@@ -1,5 +1,4 @@
 import React from 'react';
-import BackToTopButton from './components/backtotop';
 
 const tournaments = [
   {
@@ -46,7 +45,6 @@ const TournamentPage = () => {
           ))}
         </div>
       </section>
-      <BackToTopButton/>
     </div>
   );
 };
