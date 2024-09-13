@@ -8,18 +8,23 @@
 - npm (Node Package Manager)
 - Steps to Set Up the Project:
 - Clone the Repository: by writing the below code in your terminal
+
 ```
 git clone https://github.com/Ketanop321/cricket-website.git 
 ```
 #### This command will download the repository to your local machine.
 
-#### Navigate to the Project Directory:write this in terminal
+
+#### If u use Github Desktop then click on code and then click on Github Desktop
+
+## Navigate to the Project Directory
+#### Write this in terminal
 ```
 cd cricket-website
 ```
 #### Install Dependencies:write this in terminal
 ```
-npm install
+npm install or npm i
 ```
 #### This will install all the necessary packages from the package.json file.
 
