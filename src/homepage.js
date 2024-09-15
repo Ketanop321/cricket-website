@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import RegistrationForm from './registrationform'; // Import the RegistrationForm component
 import LiveScores from './livescore'; // Make sure this path is correct
 import BackToTopButton from './components/backtotop';
-
 const tournamentsData = [
   {
     id: 1,
@@ -79,7 +78,7 @@ const HomePage = () => {
       <section className="bg-blue-600 text-white py-20 text-center">
         <h1 className="text-4xl font-bold">XYZ Organization Cricket Tournaments</h1>
         <p className="mt-4 text-lg">Join exciting cricket tournaments in various formats: T20, One Day, and Test!</p>
-        <Link to="/exploretournaments">  {/* Use Link to navigate to the ExploreTournaments page */}
+        <Link to="/tournaments">  {/* Use Link to navigate to the ExploreTournaments page */}
           <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
             Explore Tournaments
           </button>
@@ -144,4 +143,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePage
