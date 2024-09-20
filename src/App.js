@@ -6,7 +6,7 @@ import TournamentPage from './tournament';
 import Footer from './footer';
 import ContactUs from './contactus';
 import LearnMorePage from './LearnMorePage';
-import RegisterPage from './RegisterPage';
+// import RegisterPage from './RegisterPage';
 import LiveScore from './livescore';
 import PlayerPage from './player';
 import TeamPage from './teampage';
@@ -37,7 +37,7 @@ function App() {
           <Route path="/tournaments" element={<TournamentPage />} />
           <Route path="/tournaments/:id" element={<TournamentDetailPage />} /> {/* Dynamic Route */}
           <Route path="/learn-more" element={<LearnMorePage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          {/* <Route path="/register" element={<RegisterPage />} /> */}
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/players" element={<PlayerPage />} />
           <Route path="/teams" element={<TeamPage />} />
