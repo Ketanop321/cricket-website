@@ -45,7 +45,7 @@ const playersData = [
     id: 2,
     name: 'Jane Smith',
     role: 'Bowler',
-    matches: 40,
+    matches: 95,
     wickets: 80,
     bestFigures: '5/20',
     image: 'https://via.placeholder.com/150',
