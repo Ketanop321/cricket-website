@@ -4,6 +4,61 @@ import RegistrationForm from './registrationform';
 import BackToTopButton from './components/backtotop';
 
 const tournamentsData = [
+  {
+    id: 1,
+    name: 'T20 Championship',
+    date: 'October 2024',
+    format: 'T20',
+    location: 'XYZ Stadium',
+    description: 'Exciting T20 matches with top international teams.',
+  },
+  {
+    id: 2,
+    name: 'One Day Cup',
+    date: 'November 2024',
+    format: 'One Day',
+    location: 'ABC Stadium',
+    description: 'Experience intense One Day matches between competitive teams.',
+  },
+  {
+    id: 3,
+    name: 'Test Series',
+    date: 'December 2024',
+    format: 'Test',
+    location: 'DEF Stadium',
+    description: 'A classic Test Series that showcases endurance and skill.',
+  },
+];
+
+const playersData = [
+  {
+    id: 1,
+    name: 'John Doe',
+    role: 'Batsman',
+    matches: 50,
+    runs: 2000,
+    average: 40.0,
+    image: 'https://via.placeholder.com/150', // You can replace this with real image URLs
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    role: 'Bowler',
+    matches: 95,
+    wickets: 80,
+    bestFigures: '5/20',
+    image: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 3,
+    name: 'David Warner',
+    role: 'All-rounder',
+    matches: 70,
+    runs: 3500,
+    wickets: 50,
+    average: 45.5,
+    image: 'https://via.placeholder.com/150',
+  },
   { id: 1, name: 'T20 Championship', date: 'October 5, 2024', format: 'T20', location: 'Mumbai', description: 'Exciting T20 format tournament with top teams competing for the trophy.' },
   { id: 2, name: 'One Day World Cup', date: 'November 15, 2024', format: 'One Day', location: 'Delhi', description: 'A thrilling one-day international series for cricket fans.' },
   { id: 3, name: 'Test Series', date: 'December 20, 2024', format: 'Test', location: 'Kolkata', description: 'The classic format, bringing you the best of test cricket action.' }
