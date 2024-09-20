@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BackToTopButton from './components/backtotop';
-import RegistrationForm from './registrationform'; 
+import RegistrationForm from './registrationform';
 
 const tournaments = [
   {
@@ -33,16 +33,32 @@ const tournaments = [
 ];
 
 const TournamentPage = () => {
-  const [isFormVisible, setFormVisible] = useState(false);
+  const [isFormVisible, setFormVisible] = useState(false); // Controls form visibility
   const [selectedTournament, setSelectedTournament] = useState(null); // Track selected tournament
+  const [registeredTournament, setRegisteredTournament] = useState(null); // Track registered tournament
+  const [isCancelModalVisible, setCancelModalVisible] = useState(false); // Controls cancel modal visibility
 
   const handleRegisterClick = (tournament) => {
     setSelectedTournament(tournament); // Set the selected tournament
+    setRegisteredTournament(tournament); // Mark the tournament as registered
     setFormVisible(true); // Show the registration form
   };
 
   const handleCloseForm = () => {
     setFormVisible(false); // Hide the registration form
+  };
+
+  const handleCancelRegistrationClick = () => {
+    setCancelModalVisible(true); // Show cancel modal
+  };
+
+  const confirmCancelRegistration = () => {
+    setRegisteredTournament(null); // Clear registered tournament
+    setCancelModalVisible(false); // Close modal
+  };
+
+  const closeCancelModal = () => {
+    setCancelModalVisible(false); // Close modal without cancelling
   };
 
   return (
@@ -68,13 +84,24 @@ const TournamentPage = () => {
                 <p><strong>Location:</strong> {tournament.location}</p>
                 <p><strong>Teams:</strong> {tournament.teams.join(', ')}</p>
                 <p><strong>Prize Pool:</strong> {tournament.prizePool}</p>
-                
-                <button
-                  onClick={() => handleRegisterClick(tournament)} // Trigger registration form
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
-                >
-                  Register
-                </button>
+
+                {registeredTournament && registeredTournament.id === tournament.id ? (
+                  // Show "Cancel Registration" button if already registered
+                  <button
+                    onClick={handleCancelRegistrationClick}
+                    className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
+                  >
+                    Cancel Registration
+                  </button>
+                ) : (
+                  // Show "Register" button if not registered
+                  <button
+                    onClick={() => handleRegisterClick(tournament)}
+                    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
+                  >
+                    Register
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -88,6 +115,31 @@ const TournamentPage = () => {
           selectedTournament={selectedTournament} // Pass the selected tournament
         />
       )}
+
+      {/* Cancel Registration Modal */}
+      {isCancelModalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-2xl font-semibold mb-4">Cancel Registration</h2>
+            <p className="mb-4">Do you really want to cancel your registration?</p>
+            <div className="flex justify-between">
+              <button
+                onClick={confirmCancelRegistration}
+                className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg"
+              >
+                Yes
+              </button>
+              <button
+                onClick={closeCancelModal}
+                className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <BackToTopButton />
     </div>
   );

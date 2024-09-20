@@ -7,9 +7,12 @@ const RegistrationForm = ({ onClose }) => {
     email: '',
     phone: '',
     tournament: '',
+    paymentMethod: '',
   });
+  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false); // Track submission status
 
+  // Form field change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -18,8 +21,30 @@ const RegistrationForm = ({ onClose }) => {
     }));
   };
 
+  // Validation logic
+  const validateStep = () => {
+    let stepErrors = {};
+    if (step === 1) {
+      if (!formData.name.trim()) stepErrors.name = 'Name is required';
+      if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        stepErrors.email = 'Valid email is required';
+      }
+      if (!formData.phone.trim() || !/^\d{10}$/.test(formData.phone)) {
+        stepErrors.phone = 'Valid 10-digit phone number is required';
+      }
+    } else if (step === 2) {
+      if (!formData.tournament) stepErrors.tournament = 'Please select a tournament';
+    } else if (step === 3) {
+      if (!formData.paymentMethod) stepErrors.paymentMethod = 'Please select a payment method';
+    }
+
+    setErrors(stepErrors);
+    return Object.keys(stepErrors).length === 0;
+  };
+
+  // Handle next button click with validation
   const handleNext = () => {
-    setStep((prevStep) => prevStep + 1); // Go to the next step
+    if (validateStep()) setStep((prevStep) => prevStep + 1); // Go to the next step if valid
   };
 
   const handlePrevious = () => {
@@ -28,8 +53,10 @@ const RegistrationForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true); // Mark form as submitted
+    if (validateStep()) {
+      console.log('Form submitted:', formData);
+      setIsSubmitted(true); // Mark form as submitted
+    }
   };
 
   return (
@@ -39,7 +66,7 @@ const RegistrationForm = ({ onClose }) => {
         {!isSubmitted ? (
           <>
             <h2 className="text-2xl font-semibold mb-4">Register for Tournament</h2>
-            
+
             <form onSubmit={handleSubmit}>
               {/* Step 1: Personal Information */}
               {step === 1 && (
@@ -52,9 +79,10 @@ const RegistrationForm = ({ onClose }) => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                      className={`mt-1 block w-full p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded`}
                       required
                     />
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                   </div>
                   <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700">Email</label>
@@ -64,9 +92,10 @@ const RegistrationForm = ({ onClose }) => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                      className={`mt-1 block w-full p-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded`}
                       required
                     />
+                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                   </div>
                   <div className="mb-4">
                     <label htmlFor="phone" className="block text-gray-700">Phone</label>
@@ -76,9 +105,10 @@ const RegistrationForm = ({ onClose }) => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                      className={`mt-1 block w-full p-2 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded`}
                       required
                     />
+                    {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
                   </div>
                 </div>
               )}
@@ -93,7 +123,7 @@ const RegistrationForm = ({ onClose }) => {
                       name="tournament"
                       value={formData.tournament}
                       onChange={handleChange}
-                      className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                      className={`mt-1 block w-full p-2 border ${errors.tournament ? 'border-red-500' : 'border-gray-300'} rounded`}
                       required
                     >
                       <option value="">Select a tournament</option>
@@ -101,18 +131,43 @@ const RegistrationForm = ({ onClose }) => {
                       <option value="One Day Cup">One Day Cup</option>
                       <option value="Test Series">Test Series</option>
                     </select>
+                    {errors.tournament && <p className="text-red-500 text-sm">{errors.tournament}</p>}
                   </div>
                 </div>
               )}
 
-              {/* Step 3: Confirmation */}
+              {/* Step 3: Payment Method */}
               {step === 3 && (
+                <div>
+                  <div className="mb-4">
+                    <label htmlFor="paymentMethod" className="block text-gray-700">Payment Method</label>
+                    <select
+                      id="paymentMethod"
+                      name="paymentMethod"
+                      value={formData.paymentMethod}
+                      onChange={handleChange}
+                      className={`mt-1 block w-full p-2 border ${errors.paymentMethod ? 'border-red-500' : 'border-gray-300'} rounded`}
+                      required
+                    >
+                      <option value="">Select payment method</option>
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Debit Card">Debit Card</option>
+                      <option value="Net Banking">Net Banking</option>
+                    </select>
+                    {errors.paymentMethod && <p className="text-red-500 text-sm">{errors.paymentMethod}</p>}
+                  </div>
+                </div>
+              )}
+
+              {/* Step 4: Confirmation */}
+              {step === 4 && (
                 <div>
                   <h3 className="text-xl font-semibold">Confirm Your Details</h3>
                   <p><strong>Name:</strong> {formData.name}</p>
                   <p><strong>Email:</strong> {formData.email}</p>
                   <p><strong>Phone:</strong> {formData.phone}</p>
                   <p><strong>Tournament:</strong> {formData.tournament}</p>
+                  <p><strong>Payment Method:</strong> {formData.paymentMethod}</p>
                 </div>
               )}
 
@@ -128,7 +183,7 @@ const RegistrationForm = ({ onClose }) => {
                   </button>
                 )}
 
-                {step < 3 && (
+                {step < 4 && (
                   <button
                     type="button"
                     onClick={handleNext}
@@ -138,7 +193,7 @@ const RegistrationForm = ({ onClose }) => {
                   </button>
                 )}
 
-                {step === 3 && (
+                {step === 4 && (
                   <button
                     type="submit"
                     className="bg-green-500 hover:bg-green-400 text-white px-4 py-2 rounded-lg"
@@ -164,10 +219,10 @@ const RegistrationForm = ({ onClose }) => {
           // Success message after form submission
           <div className="text-center">
             <h2 className="text-2xl font-semibold text-green-600 mb-4">Registration Successful!</h2>
-            <p className="mb-6">Thank you for registering for the tournament. We'll contact you soon with more details.</p>
+            <p className="mb-6">Thank you for registering for the tournament. We look forward to your participation.</p>
             <button
               onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
+              className="bg-green-500 hover:bg-green-400 text-white px-4 py-2 rounded-lg"
             >
               Close
             </button>
