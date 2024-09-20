@@ -1,11 +1,14 @@
 import React from 'react';
+import MumbaiIndians from './assets/team logo/mi.png';
+import ChennaiSuperKings from './assets/team logo/csk.png';
+import KolkataKnightRiders from './assets/team logo/kkr.png';
 
 const teamsData = [
   {
     id: 1,
     name: 'Mumbai Indians',
     country: 'India',
-    logoUrl: 'https://example.com/mumbai-logo.jpg', // Placeholder logo URL
+    logo: MumbaiIndians, // Placeholder logo URL
     description: 'Mumbai Indians is a franchise cricket team representing Mumbai, Maharashtra in the IPL.',
     championshipsWon: 5,
     captain: 'Rohit Sharma',
@@ -13,23 +16,33 @@ const teamsData = [
   },
   {
     id: 2,
-    name: 'Sydney Sixers',
-    country: 'Australia',
-    logoUrl: 'https://example.com/sydney-logo.jpg', // Placeholder logo URL
-    description: 'Sydney Sixers are a franchise cricket team based in Sydney, that competes in the Big Bash League.',
+    name: 'Kolkata Knight Riders',
+    country: 'India',
+    logo: KolkataKnightRiders, // Placeholder logo URL
+    description: 'KKR stands for Kolkata Knight Riders, a cricket team that plays in the Indian Premier League (IPL)',
     championshipsWon: 3,
-    captain: 'Moises Henriques',
-    coach: 'Greg Shipperd',
+    captain: 'Shreyas Iyer',
+    coach: 'Chandrakant Pandit',
   },
   {
     id: 3,
     name: 'Chennai Super Kings',
     country: 'India',
-    logoUrl: 'https://example.com/chennai-logo.jpg', // Placeholder logo URL
+    logo: ChennaiSuperKings, // Placeholder logo URL
     description: 'Chennai Super Kings is a franchise cricket team based in Chennai, Tamil Nadu, India.',
     championshipsWon: 4,
     captain: 'MS Dhoni',
     coach: 'Stephen Fleming',
+  },
+  {
+    id: 4,
+    name: 'Mumbai Indians',
+    country: 'India',
+    logo: MumbaiIndians, // Placeholder logo URL
+    description: 'Mumbai Indians is a franchise cricket team representing Mumbai, Maharashtra in the IPL.',
+    championshipsWon: 5,
+    captain: 'Rohit Sharma',
+    coach: 'Mahela Jayawardene',
   },
   // Add more teams as needed
 ];
@@ -42,7 +55,13 @@ const TeamPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {teamsData.map((team) => (
           <div key={team.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src={team.logoUrl} alt={team.name} className="w-full h-64 object-cover" />
+            <div className="flex items-center justify-center h-64 bg-gray-200">
+              <img 
+                src={team.logo} 
+                alt={team.name} 
+                className="object-contain h-full w-full"
+              />
+            </div>
             <div className="p-6">
               <h2 className="text-2xl font-bold text-blue-600">{team.name}</h2>
               <p className="text-gray-600"><strong>Country:</strong> {team.country}</p>
