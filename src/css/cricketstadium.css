@@ -1,0 +1,22 @@
+.floating-icon {
+    animation: float 2s ease-in-out infinite;
+  }
+  
+  .cricket-ball {
+    animation-delay: 0s; /* Adjust delay for different timings */
+  }
+  
+  .cricket-bat {
+    animation-delay: 0.5s; /* Delay the bat's animation slightly */
+  }
+  
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px); /* Adjust floating height */
+    }
+  }
+  
