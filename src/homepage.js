@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RegistrationForm from './registrationform';
 import BackToTopButton from './components/backtotop';
 import './css/cricketstadium.css'
+import CookieConsent from './components/cookie';
 
 
 const tournamentsData = [
@@ -80,7 +81,9 @@ const HomePage = () => {
       <section
         className="bg-blue-600 text-white py-20 text-center bg-cover bg-center opacity-9"
         style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
-      >
+      />
+      <CookieConsent/>
+      <section className="bg-blue-600 text-white py-20 text-center">
         <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
         <p className="mt-4 text-lg">
           Join exciting cricket tournaments in various formats: T20, One Day, and Test!

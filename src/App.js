@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './navigation';
 import HomePage from './homepage';
 import TournamentPage from './tournament';
@@ -12,8 +12,9 @@ import PlayerPage from './player';
 import TeamPage from './teampage';
 import Preloader from './components/preloader'; // Import the preloader component
 import TournamentDetailPage from './TournamentDetailPage'; // New page for tournament details
+import TeamDetails from './teamDetails'; // Page for individual team details
 
-function App() {
+const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,17 +36,29 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/tournaments" element={<TournamentPage />} />
-          <Route path="/tournaments/:id" element={<TournamentDetailPage />} /> {/* Dynamic Route */}
+
+          {/* Dynamic tournament detail page */}
+          <Route path="/tournaments/:id" element={<TournamentDetailPage />} />
+
+          {/* Learn More page */}
           <Route path="/learn-more" element={<LearnMorePage />} />
-          {/* <Route path="/register" element={<RegisterPage />} /> */}
+
+          {/* Contact Us page */}
           <Route path="/contact" element={<ContactUs />} />
+
+          {/* Player page */}
           <Route path="/players" element={<PlayerPage />} />
+
+          {/* Teams page (team listing) */}
           <Route path="/teams" element={<TeamPage />} />
+
+          {/* Dynamic team detail page */}
+          <Route path="/team/:id" element={<TeamDetails />} />
         </Routes>
         <Footer />
       </div>
     </Router>
   );
-}
+};
 
 export default App;
