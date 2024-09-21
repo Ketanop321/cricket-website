@@ -78,22 +78,29 @@ const HomePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
+       
       <section
-        className="bg-blue-600 text-white py-20 text-center bg-cover bg-center opacity-9"
-        style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
-      />
+  className="bg-blue-600 text-white py-20 text-center opacity-40"
+  style={{
+     backgroundImage: "url('/cricketstadium.avif')",
+    backgroundSize: "cover",          // Ensures the image covers the entire section
+    backgroundPosition: "center",     // Centers the image
+    backgroundRepeat: "no-repeat",    // Prevents the image from repeating
+    minHeight: '800px',               // Keeps the minimum height
+  }}
+>
+  <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
+  <p className="mt-4 text-lg">
+    Join exciting cricket tournaments in various formats: T20, One Day, and Test!
+  </p>
+  <Link to="/tournaments">
+    <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
+      Explore Tournaments
+    </button>
+  </Link>
+</section>
+
       <CookieConsent/>
-      <section className="bg-blue-600 text-white py-20 text-center">
-        <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
-        <p className="mt-4 text-lg">
-          Join exciting cricket tournaments in various formats: T20, One Day, and Test!
-        </p>
-        <Link to="/tournaments">
-          <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
-            Explore Tournaments
-          </button>
-        </Link>
-      </section>
 
       {/* Rotating Banner */}
       <section className="relative py-8">
