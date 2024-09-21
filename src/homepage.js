@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationForm from './registrationform';
 import BackToTopButton from './components/backtotop';
+import './css/cricketstadium.css'
+
 
 const tournamentsData = [
   {
@@ -30,68 +32,44 @@ const tournamentsData = [
   },
 ];
 
-const playersData = [
-  {
-    id: 1,
-    name: 'John Doe',
-    role: 'Batsman',
-    matches: 50,
-    runs: 2000,
-    average: 40.0,
-    image: 'https://via.placeholder.com/150', // You can replace this with real image URLs
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    role: 'Bowler',
-    matches: 95,
-    wickets: 80,
-    bestFigures: '5/20',
-    image: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 3,
-    name: 'David Warner',
-    role: 'All-rounder',
-    matches: 70,
-    runs: 3500,
-    wickets: 50,
-    average: 45.5,
-    image: 'https://via.placeholder.com/150',
-  },
-  { id: 1, name: 'T20 Championship', date: 'October 5, 2024', format: 'T20', location: 'Mumbai', description: 'Exciting T20 format tournament with top teams competing for the trophy.' },
-  { id: 2, name: 'One Day World Cup', date: 'November 15, 2024', format: 'One Day', location: 'Delhi', description: 'A thrilling one-day international series for cricket fans.' },
-  { id: 3, name: 'Test Series', date: 'December 20, 2024', format: 'Test', location: 'Kolkata', description: 'The classic format, bringing you the best of test cricket action.' }
-];
-
 const HomePage = () => {
-  const [isFormVisible, setFormVisible] = useState(false); // Controls form visibility
-  const [registeredTournament, setRegisteredTournament] = useState(null); // Stores registered tournament info
-  const [isCancelModalVisible, setCancelModalVisible] = useState(false); // Controls cancel modal visibility
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [registeredTournament, setRegisteredTournament] = useState(null);
+  const [isCancelModalVisible, setCancelModalVisible] = useState(false);
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  // When the "Register" button is clicked, show the form
+  // Rotating banner effect
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsAnimating(true); // Start animation
+      setTimeout(() => {
+        setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % tournamentsData.length);
+        setIsAnimating(false); // End animation
+      }, 500); // Duration of slide animation
+    }, 3000); // Change banner every 3 seconds
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleRegisterClick = (tournament) => {
     setRegisteredTournament(tournament);
     setFormVisible(true);
   };
 
-  // When the "Cancel Registration" button is clicked, show the cancel modal
   const handleCancelRegistration = () => {
     setCancelModalVisible(true);
   };
 
-  // Confirm cancellation of registration
   const confirmCancelRegistration = () => {
-    setRegisteredTournament(null); // Clear registered tournament
-    setCancelModalVisible(false);  // Close modal
+    setRegisteredTournament(null);
+    setCancelModalVisible(false);
   };
 
-  // Close the cancel modal without cancelling
   const closeCancelModal = () => {
     setCancelModalVisible(false);
   };
 
-  // Close the registration form
   const handleCloseForm = () => {
     setFormVisible(false);
   };
@@ -100,22 +78,37 @@ const HomePage = () => {
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
       <section
-  className="bg-blue-600 text-white py-20 text-center bg-cover bg-center opacity-9"
-  style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
->
-  <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
-  <p className="mt-4 text-lg">
-    Join exciting cricket tournaments in various formats: T20, One Day, and Test!
-  </p>
-  <Link to="/tournaments">
-    <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
-      Explore Tournaments
-    </button>
-  </Link>
-</section>
+        className="bg-blue-600 text-white py-20 text-center bg-cover bg-center opacity-9"
+        style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
+      >
+        <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
+        <p className="mt-4 text-lg">
+          Join exciting cricket tournaments in various formats: T20, One Day, and Test!
+        </p>
+        <Link to="/tournaments">
+          <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
+            Explore Tournaments
+          </button>
+        </Link>
+      </section>
 
+      {/* Rotating Banner */}
+      <section className="relative py-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-semibold text-gray-800">Upcoming Tournament</h2>
+          <div className={`mt-4 transition-transform duration-500 ease-in-out ${isAnimating ? 'transform translate-x-full' : ''}`}>
+            <h3 className="text-2xl font-bold">{tournamentsData[currentBannerIndex].name}</h3>
+            <p>{tournamentsData[currentBannerIndex].date}</p>
+            <Link to="/tournaments">
+              <button className="mt-4 bg-yellow-500 hover:bg-yellow-400 text-white px-6 py-2 rounded-lg transition duration-300 transform hover:scale-105">
+                Join Now!
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      {/* Registration Form - shown when "Register" button is clicked */}
+      {/* Registration Form */}
       {isFormVisible && (
         <RegistrationForm
           onClose={handleCloseForm}
@@ -126,7 +119,7 @@ const HomePage = () => {
       {/* Tournament List */}
       <section className="py-12">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-semibold text-gray-800">Upcoming Tournaments</h2>
+          <h2 className="text-3xl font-semibold text-gray-800">  Tournaments</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {tournamentsData.map((tournament) => (
