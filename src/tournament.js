@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BackToTopButton from './components/backtotop';
 import RegistrationForm from './registrationform';
+import './css/cricketballanimation.css'
 
 const tournaments = [
   {
@@ -37,11 +38,21 @@ const TournamentPage = () => {
   const [selectedTournament, setSelectedTournament] = useState(null); // Track selected tournament
   const [registeredTournament, setRegisteredTournament] = useState(null); // Track registered tournament
   const [isCancelModalVisible, setCancelModalVisible] = useState(false); // Controls cancel modal visibility
+  const [isDetailsVisible, setDetailsVisible] = useState(false); // Controls view details modal visibility
 
   const handleRegisterClick = (tournament) => {
     setSelectedTournament(tournament); // Set the selected tournament
     setRegisteredTournament(tournament); // Mark the tournament as registered
     setFormVisible(true); // Show the registration form
+  };
+
+  const handleViewDetailsClick = (tournament) => {
+    setSelectedTournament(tournament); // Set the selected tournament to view details
+    setDetailsVisible(true); // Show the details modal
+  };
+
+  const handleCloseDetails = () => {
+    setDetailsVisible(false); // Hide the details modal
   };
 
   const handleCloseForm = () => {
@@ -94,13 +105,23 @@ const TournamentPage = () => {
                     Cancel Registration
                   </button>
                 ) : (
-                  // Show "Register" button if not registered
-                  <button
-                    onClick={() => handleRegisterClick(tournament)}
-                    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
-                  >
-                    Register
-                  </button>
+                  <>
+                    {/* Show "Register" button if not registered */}
+                    <button
+                      onClick={() => handleRegisterClick(tournament)}
+                      className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg mr-2"
+                    >
+                      Register
+                    </button>
+
+                    {/* Show "View Details" button */}
+                    <button
+                      onClick={() => handleViewDetailsClick(tournament)}
+                      className="mt-4 bg-gray-500 text-white px-4 py-2 rounded-lg"
+                    >
+                      View Details
+                    </button>
+                  </>
                 )}
               </div>
             </div>
@@ -136,6 +157,27 @@ const TournamentPage = () => {
                 No
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* View Details Modal */}
+      {isDetailsVisible && selectedTournament && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-2xl font-semibold mb-4">Tournament Details</h2>
+            <p><strong>Name:</strong> {selectedTournament.name}</p>
+            <p><strong>Date:</strong> {selectedTournament.date}</p>
+            <p><strong>Format:</strong> {selectedTournament.format}</p>
+            <p><strong>Location:</strong> {selectedTournament.location}</p>
+            <p><strong>Teams:</strong> {selectedTournament.teams.join(', ')}</p>
+            <p><strong>Prize Pool:</strong> {selectedTournament.prizePool}</p>
+            <button
+              onClick={handleCloseDetails}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

@@ -11,6 +11,7 @@ const RegistrationForm = ({ onClose }) => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false); // Track submission status
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   // Form field change handler
   const handleChange = (e) => {
@@ -56,6 +57,7 @@ const RegistrationForm = ({ onClose }) => {
     if (validateStep()) {
       console.log('Form submitted:', formData);
       setIsSubmitted(true); // Mark form as submitted
+      setShowConfirmationModal(true); // Show confirmation modal
     }
   };
 
@@ -166,7 +168,7 @@ const RegistrationForm = ({ onClose }) => {
                   <p><strong>Name:</strong> {formData.name}</p>
                   <p><strong>Email:</strong> {formData.email}</p>
                   <p><strong>Phone:</strong> {formData.phone}</p>
-                  <p><strong>Tournament:</strong> {formData.tournament}</p>
+                  <p ><strong>Tournament:</strong> {formData.tournament}</p>
                   <p><strong>Payment Method:</strong> {formData.paymentMethod}</p>
                 </div>
               )}
@@ -216,10 +218,14 @@ const RegistrationForm = ({ onClose }) => {
             </form>
           </>
         ) : (
-          // Success message after form submission
+          // Confirmation modal
           <div className="text-center">
             <h2 className="text-2xl font-semibold text-green-600 mb-4">Registration Successful!</h2>
             <p className="mb-6">Thank you for registering for the tournament. We look forward to your participation.</p>
+            <div className="flex justify-center">
+              <div className="cricket-ball" />
+              <div className="stumps" />
+            </div>
             <button
               onClick={onClose}
               className="bg-green-500 hover:bg-green-400 text-white px-4 py-2 rounded-lg"
