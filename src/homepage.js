@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RegistrationForm from './registrationform';
 import BackToTopButton from './components/backtotop';
-import './css/cricketstadium.css';
 import CookieConsent from './components/cookie';
- 
+import RotatingBanner from './RotatingBanner'; // Import the new component
+import './css/cricketstadium.css';
+
 const tournamentsData = [
   {
     id: 1,
@@ -37,22 +38,7 @@ const HomePage = () => {
   const [registeredTournament, setRegisteredTournament] = useState(null);
   const [isCancelModalVisible, setCancelModalVisible] = useState(false);
   const [isDetailsModalVisible, setDetailsModalVisible] = useState(false);
-  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState(null);
-
-  // Rotating banner effect
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsAnimating(true); // Start animation
-      setTimeout(() => {
-        setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % tournamentsData.length);
-        setIsAnimating(false); // End animation
-      }, 500); // Duration of slide animation
-    }, 3000); // Change banner every 3 seconds
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   const handleRegisterClick = (tournament) => {
     setRegisteredTournament(tournament);
@@ -88,51 +74,32 @@ const HomePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
-
       <section
-  className="bg-blue-600 text-white py-20 text-center opacity-100 flex items-center justify-center"
-  style={{
-    backgroundImage: "url('/cricketstadium.avif')",
-    backgroundSize: "cover",          // Ensures the image covers the entire section
-    backgroundPosition: "center",     // Centers the image
-    backgroundRepeat: "no-repeat",    // Prevents the image from repeating
-    minHeight: '800px',               // Keeps the minimum height
-  }}
->
-  <div className="flex flex-col items-center justify-center">
-    <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
-    <p className="mt-4 text-lg">
-      Join exciting cricket tournaments in various formats: T20, One Day, and Test!
-    </p>
-    <Link to="/tournaments">
-      <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
-        Explore Tournaments
-      </button>
-    </Link>
-  </div>
-</section>
-
+        className="bg-blue-600 text-white py-20 text-center opacity-100 flex items-center justify-center"
+        style={{
+          backgroundImage: "url('/cricketstadium.avif')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: '800px',
+        }}
+      >
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
+          <p className="mt-4 text-lg">
+            Join exciting cricket tournaments in various formats: T20, One Day, and Test!
+          </p>
+          <Link to="/tournaments">
+            <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
+              Explore Tournaments
+            </button>
+          </Link>
+        </div>
+      </section>
 
       <CookieConsent />
 
-      <section className="relative py-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-  <div className="text-center">
-    <h2 className="text-4xl font-bold text-white drop-shadow-lg">Upcoming Tournament</h2>
-    <div
-      className={`mt-6 transition-transform duration-500 ease-in-out transform ${
-        isAnimating ? 'translate-x-full' : ''
-      }`}
-    >
-      <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">{tournamentsData[currentBannerIndex].name}</h3>
-      <p className="text-lg text-white mt-2">{tournamentsData[currentBannerIndex].date}</p>
-      <Link to="/tournaments">
-        <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
-          Join Now!
-        </button>
-      </Link>
-    </div>
-  </div>
-</section>
+      <RotatingBanner tournamentsData={tournamentsData} /> {/* Use the new component */}
 
       {/* Registration Form */}
       {isFormVisible && (
