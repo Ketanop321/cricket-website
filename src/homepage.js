@@ -88,6 +88,22 @@ const HomePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
+      <section
+        className=" text-white py-20 text-center bg-cover bg-center opacity-9"
+        style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
+      />
+      <section className=" text-white py-20 text-center">
+        <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
+        <p className="mt-4 text-lg">
+          Join exciting cricket tournaments in various formats: T20, One Day, and Test!
+        </p>
+        <Link to="/tournaments">
+          <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
+            Explore Tournaments
+          </button>
+        </Link>
+      </section>
+      <CookieConsent/>
 
       <section
   className="bg-blue-600 text-white py-20 text-center opacity-100 flex items-center justify-center"
