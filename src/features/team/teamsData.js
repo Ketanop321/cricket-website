@@ -1,13 +1,13 @@
-import MumbaiIndians from './assets/team logo/mi.png';
-import ChennaiSuperKings from './assets/team logo/csk.png';
-import KolkataKnightRiders from './assets/team logo/kkr.png';
-import DelhiCapitals from './assets/team logo/dc.png';
-import SunrisersHyderabad from './assets/team logo/srh.png';
-import GujaratTitans from './assets/team logo/gt.png';
-import RajasthanRoyals from './assets/team logo/rrs.png';
-import RoyalChallengersBengaluru from './assets/team logo/rcb.png';
-import LucknowSuperGiants from './assets/team logo/lsg.png';
-import PunjabKings from './assets/team logo/pk.png';
+import MumbaiIndians from '../../assets/team logo/mi.png';
+import ChennaiSuperKings from '../../assets/team logo/csk.png';
+import KolkataKnightRiders from '../../assets/team logo/kkr.png';
+import DelhiCapitals from '../../assets/team logo/dc.png';
+import SunrisersHyderabad from '../../assets/team logo/srh.png';
+import GujaratTitans from '../../assets/team logo/gt.png';
+import RajasthanRoyals from '../../assets/team logo/rrs.png';
+import RoyalChallengersBengaluru from '../../assets/team logo/rcb.png';
+import LucknowSuperGiants from '../../assets/team logo/lsg.png';
+import PunjabKings from '../../assets/team logo/pk.png';
 
 const teamsData = [
   {

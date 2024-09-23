@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import BackToTopButton from './components/backtotop';
-import RegistrationForm from './registrationform';
-import './css/cricketballanimation.css'
+import RegistrationForm from '../registration/registrationform';
+import './cricketballanimation.css'
+import BackToTopButton from '../../components/backtotop';
 
 const tournaments = [
   {
@@ -182,7 +182,7 @@ const TournamentPage = () => {
         </div>
       )}
 
-      <BackToTopButton />
+      <BackToTopButton/>
     </div>
   );
 };

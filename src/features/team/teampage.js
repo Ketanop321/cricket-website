@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import teamsData from './teamsData'
+import teamsData from '../team/teamsData'
 
 const TeamPage = () => {
   <teamsData/>
