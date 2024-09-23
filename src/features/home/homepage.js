@@ -113,8 +113,13 @@ const HomePage = () => {
       </section>
 
       <CookieConsent />
+      <section className="text-center py-0.1">
+        <h1 className="text-5xl font-extrabold text-gray-800">
+          Upcoming Tournament
+        </h1>
+      </section>
 
-      {/* Adding margin to create gap */}
+      {/* Add padding and margin to create a gap around the Upcoming Tournament section */}
       <section
         className="relative py-8 my-12"  // Add 'my-12' to create margin between sections
         style={{
@@ -123,6 +128,22 @@ const HomePage = () => {
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
+          <div className="text-center">
+            <div
+              className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'
+                }`}
+            >
+              <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">
+                {tournamentsData[currentBannerIndex].name}
+              </h3>
+              <p className="text-lg text-white mt-2">
+                {tournamentsData[currentBannerIndex].date}
+              </p>
+              <Link to="/tournaments">
+                <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
+                  Join Now!
+                </button>
+              </Link>
           {/* Adding a box-like structure */}
           <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg mx-auto w-4/5 md:w-3/5">
             <div className="text-center">
@@ -259,5 +280,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;
