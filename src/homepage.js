@@ -73,8 +73,10 @@ const HomePage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
+          
+ 
       {/* Hero Section */}
-      <section
+       <section
         className="bg-blue-600 text-white py-20 text-center opacity-100 flex items-center justify-center"
         style={{
           backgroundImage: "url('/cricketstadium.avif')",

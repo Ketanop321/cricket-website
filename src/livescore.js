@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const LiveScores = () => {
   const [liveScores, setLiveScores] = useState([
@@ -42,19 +42,42 @@ const LiveScores = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % liveScores.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [liveScores.length]);
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? liveScores.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % liveScores.length);
+  };
 
   return (
-    <section className="py-12 bg-gray-900 text-white">
+    <section className="py-12 bg-black text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">Live Scores</h2>
-        <div className="relative">
-          <div className="flex overflow-x-auto snap-x snap-mandatory">
+        <div className="relative flex items-center">
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 z-10 p-4 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <div className="flex overflow-x-auto snap-x snap-mandatory w-full">
             {liveScores.map((score, index) => (
               <div
                 key={score.id}
@@ -62,10 +85,10 @@ const LiveScores = () => {
                   activeIndex === index ? 'opacity-100' : 'opacity-50'
                 } transition-opacity duration-500`}
               >
-                <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <div className="bg-white rounded-lg p-6 shadow-lg h-96 text-black">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-semibold">{score.tournament}</h3>
-                    <span className="text-gray-400 text-sm">{score.match}</span>
+                    <span className="text-gray-600 text-sm">{score.match}</span>
                   </div>
                   <div className="flex flex-col space-y-3">
                     {score.teams.map((team, teamIndex) => (
@@ -73,26 +96,26 @@ const LiveScores = () => {
                         <img
                           src={team.flag}
                           alt={team.name}
-                          className="w-8 h-8 rounded-full" // Added rounded corners and increased size
+                          className="w-8 h-8 rounded-full"
                         />
                         <div className="flex flex-col">
                           <span className="text-lg font-medium">{team.name}</span>
-                          <span className="text-gray-400 text-sm">{team.score}</span> 
+                          <span className="text-gray-600 text-sm">{team.score}</span>
                         </div>
                       </div>
                     ))}
                   </div>
                   <div className="flex justify-between items-center mt-4">
-                    <span className="text-gray-400 text-sm">{score.venue}</span>
+                    <span className="text-gray-600 text-sm">{score.venue}</span>
                     <span className="text-lg font-medium">{score.result}</span>
                   </div>
                   <div className="flex justify-between items-center mt-4">
-                    <span className="text-gray-400 text-sm">Player of the Match</span>
+                    <span className="text-gray-600 text-sm">Player of the Match</span>
                     <div className="flex items-center space-x-2">
                       <img
                         src={score.playerOfTheMatch.image}
                         alt={score.playerOfTheMatch.name}
-                        className="w-10 h-10 rounded-full" // Increased image size
+                        className="w-10 h-10 rounded-full"
                       />
                       <span className="text-lg font-medium">{score.playerOfTheMatch.name}</span>
                     </div>
@@ -101,6 +124,26 @@ const LiveScores = () => {
               </div>
             ))}
           </div>
+
+          <button
+            onClick={handleNext}
+            className="absolute right-0 z-10 p-4 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

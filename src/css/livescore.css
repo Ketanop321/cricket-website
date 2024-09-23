@@ -1,0 +1,41 @@
+/* Hide scrollbar */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes pop-out {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+  
+  /* Active card animation */
+  .active-card {
+    animation: pop-out 0.5s ease-in-out forwards;
+  }
+  
+  /* Non-active card */
+  .non-active-card {
+    animation: slide-in 0.5s ease-in-out forwards;
+  }
+  
