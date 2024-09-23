@@ -125,6 +125,8 @@ const HomePage = () => {
         className="relative py-8 bg-cover bg-center my-12"  // Added 'my-12' for top and bottom margin
         style={{
           backgroundImage: `url(${backgroundImage})`, // Make the background image slightly brighter
+          backgroundImage:` url(${backgroundImage})`,
+          filter: 'brightness(1.1)', // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
@@ -259,5 +261,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;
