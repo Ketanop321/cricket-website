@@ -6,7 +6,7 @@ import './cricketstadium.css';
 import CookieConsent from '../../components/cookie';
 import backgroundImage from '../../assets/cricketstadium.png';  // Add your background image
 import background from '../../assets/back.png';
-
+ 
 const tournamentsData = [
   {
     id: 1,
