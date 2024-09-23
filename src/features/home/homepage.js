@@ -114,19 +114,21 @@ const HomePage = () => {
 
       <CookieConsent />
 
+      <section className="text-center py-0.1">
+        <h1 className="text-5xl font-extrabold text-gray-800">
+          Upcoming Tournament
+        </h1>
+      </section>
+
       {/* Add padding and margin to create a gap around the Upcoming Tournament section */}
       <section
-        className="relative py-8 bg-cover bg-center"  // Adding 'my-12' for top and bottom margin
+        className="relative py-8 bg-cover bg-center my-12"  // Added 'my-12' for top and bottom margin
         style={{
-          backgroundImage: `url(${backgroundImage})`,
-          filter: 'brightness(1.1)', // Make the background image slightly brighter
+          backgroundImage: `url(${backgroundImage})`, // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg">
-              Upcoming Tournament
-            </h2>
             <div
               className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'
                 }`}

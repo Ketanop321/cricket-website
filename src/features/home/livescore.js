@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const LiveScores = () => {
-  const [liveScores, setLiveScores] = useState([
+  const [liveScores] = useState([
     {
       id: 1,
       tournament: 'New Zealand Women tour of Australia, 2024',
