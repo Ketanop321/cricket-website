@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './navigation';
-import HomePage from './homepage';
-import TournamentPage from './tournament';
-import Footer from './footer';
-import ContactUs from './contactus';
-import LearnMorePage from './LearnMorePage';
-import LiveScore from './livescore';
-import PlayerPage from './player';
-import TeamPage from './teampage';
+import Navbar from './features/home/navigation';
+import HomePage from './features/home/homepage';
+import TournamentPage from './features/tournament/tournament';
+import Footer from './features/home/footer';
+import ContactUs from './features/contact/contactus';
+import LearnMorePage from './features/home/LearnMorePage';
+import LiveScore from './features/home/livescore';
+import PlayerPage from './features/player/player';
+import TeamPage from './features/team/teampage';
 import Preloader from './components/preloader'; // Import the preloader component
-import TournamentDetailPage from './TournamentDetailPage'; // New page for tournament details
-import TeamDetails from './teamDetails';  // Page for individual team details
+import TournamentDetailPage from './features/tournament/TournamentDetailPage'; // New page for tournament details
+import TeamDetails from './features/team/teamDetails';  // Page for individual team details
 
 const App = () => {
   const [loading, setLoading] = useState(true);

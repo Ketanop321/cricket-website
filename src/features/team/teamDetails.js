@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import teamsData from './teamsData';
+import teamsData from '../team/teamsData';
 import AdditionalTeamInfo from './addtionalteaminfo'; // Import the additional info component
 
 const TeamDetails = () => {

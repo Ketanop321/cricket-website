@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import RegistrationForm from './registrationform';
-import BackToTopButton from './components/backtotop';
-import './css/cricketstadium.css';
-import CookieConsent from './components/cookie';
- 
+import RegistrationForm from '../registration/registrationform';
+import BackToTopButton from '../../components/backtotop';
+import './cricketstadium.css';
+import CookieConsent from '../../components/cookie';
+import backgroundImage from '../../assets/cricketstadium.png';  // Add your background image
+import background from '../../assets/back.png'
+
 const tournamentsData = [
   {
     id: 1,
@@ -86,69 +88,64 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Hero Section */}
+    <div className="bg-gray-100 min-h-screen relative">
       <section
-        className=" text-white py-20 text-center bg-cover bg-center opacity-9"
-        style={{ backgroundImage: "url('/cricketstadium.avif')", minHeight: '800px' }}
-      />
-      <section className=" text-white py-20 text-center">
-        <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
-        <p className="mt-4 text-lg">
-          Join exciting cricket tournaments in various formats: T20, One Day, and Test!
-        </p>
-        <Link to="/tournaments">
-          <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
-            Explore Tournaments
-          </button>
-        </Link>
+        className="text-white py-20 text-center flex items-center justify-center relative"
+        style={{
+          backgroundImage: `url(${background})`, // Use the provided image as the background
+          backgroundSize: "cover",
+          backgroundPosition: "bottom center", // Shift the background image upwards
+          backgroundRepeat: "no-repeat",
+          minHeight: '800px',
+        }}
+      >
+        <div className="flex flex-col items-center justify-center relative z-10">
+          <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
+          <p className="mt-4 text-lg">
+            Join exciting cricket tournaments in various formats: T20, One Day, and Test!
+          </p>
+          <Link to="/tournaments">
+            <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
+              Explore Tournaments
+            </button>
+          </Link>
+        </div>
       </section>
-      <CookieConsent/>
-
-      <section
-  className="bg-blue-600 text-white py-20 text-center opacity-100 flex items-center justify-center"
-  style={{
-    backgroundImage: "url('/cricketstadium.avif')",
-    backgroundSize: "cover",          // Ensures the image covers the entire section
-    backgroundPosition: "center",     // Centers the image
-    backgroundRepeat: "no-repeat",    // Prevents the image from repeating
-    minHeight: '800px',               // Keeps the minimum height
-  }}
->
-  <div className="flex flex-col items-center justify-center">
-    <h1 className="text-4xl font-bold">CricketVerse Cricket Tournaments</h1>
-    <p className="mt-4 text-lg">
-      Join exciting cricket tournaments in various formats: T20, One Day, and Test!
-    </p>
-    <Link to="/tournaments">
-      <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-8 py-3 mt-6 font-semibold rounded-lg">
-        Explore Tournaments
-      </button>
-    </Link>
-  </div>
-</section>
-
 
       <CookieConsent />
 
-      <section className="relative py-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-  <div className="text-center">
-    <h2 className="text-4xl font-bold text-white drop-shadow-lg">Upcoming Tournament</h2>
-    <div
-      className={`mt-6 transition-transform duration-500 ease-in-out transform ${
-        isAnimating ? 'translate-x-full' : ''
-      }`}
-    >
-      <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">{tournamentsData[currentBannerIndex].name}</h3>
-      <p className="text-lg text-white mt-2">{tournamentsData[currentBannerIndex].date}</p>
-      <Link to="/tournaments">
-        <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
-          Join Now!
-        </button>
-      </Link>
-    </div>
-  </div>
-</section>
+      {/* Add padding and margin to create a gap around the Upcoming Tournament section */}
+      <section
+        className="relative py-8 bg-cover bg-center"  // Adding 'my-12' for top and bottom margin
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          filter: 'brightness(1.1)', // Make the background image slightly brighter
+        }}
+      >
+        <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-white drop-shadow-lg">
+              Upcoming Tournament
+            </h2>
+            <div
+              className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'
+                }`}
+            >
+              <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">
+                {tournamentsData[currentBannerIndex].name}
+              </h3>
+              <p className="text-lg text-white mt-2">
+                {tournamentsData[currentBannerIndex].date}
+              </p>
+              <Link to="/tournaments">
+                <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
+                  Join Now!
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Registration Form */}
       {isFormVisible && (
@@ -237,19 +234,19 @@ const HomePage = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <h2 className="text-2xl font-semibold mb-4">Cancel Registration</h2>
-            <p className="mb-4">Do you really want to cancel your registration?</p>
-            <div className="flex justify-between">
+            <p>Are you sure you want to cancel your registration?</p>
+            <div className="flex justify-between mt-6">
               <button
                 onClick={confirmCancelRegistration}
                 className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg"
               >
-                Yes
+                Confirm
               </button>
               <button
                 onClick={closeCancelModal}
                 className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
               >
-                No
+                Close
               </button>
             </div>
           </div>
