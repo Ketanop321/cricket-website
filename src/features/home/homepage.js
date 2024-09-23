@@ -5,7 +5,7 @@ import BackToTopButton from '../../components/backtotop';
 import './cricketstadium.css';
 import CookieConsent from '../../components/cookie';
 import backgroundImage from '../../assets/cricketstadium.png';  // Add your background image
-import background from '../../assets/back.png'
+import background from '../../assets/back.png';
 
 const tournamentsData = [
   {
@@ -114,34 +114,36 @@ const HomePage = () => {
 
       <CookieConsent />
 
-      {/* Add padding and margin to create a gap around the Upcoming Tournament section */}
+      {/* Adding margin to create gap */}
       <section
-        className="relative py-8 bg-cover bg-center"  // Adding 'my-12' for top and bottom margin
+        className="relative py-8 my-12"  // Add 'my-12' to create margin between sections
         style={{
-          backgroundImage:` url(${backgroundImage})`,
+          backgroundImage: `url(${backgroundImage})`,
           filter: 'brightness(1.1)', // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg">
-              Upcoming Tournament
-            </h2>
-            <div
-              className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'
-                }`}
-            >
-              <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">
-                {tournamentsData[currentBannerIndex].name}
-              </h3>
-              <p className="text-lg text-white mt-2">
-                {tournamentsData[currentBannerIndex].date}
-              </p>
-              <Link to="/tournaments">
-                <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
-                  Join Now!
-                </button>
-              </Link>
+          {/* Adding a box-like structure */}
+          <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg mx-auto w-4/5 md:w-3/5">
+            <div className="text-center">
+              <h2 className="text-4xl font-bold text-gray-800 drop-shadow-lg">
+                Upcoming Tournament
+              </h2>
+              <div
+                className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+              >
+                <h3 className="text-3xl font-extrabold text-gray-900 drop-shadow-lg">
+                  {tournamentsData[currentBannerIndex].name}
+                </h3>
+                <p className="text-lg text-gray-700 mt-2">
+                  {tournamentsData[currentBannerIndex].date}
+                </p>
+                <Link to="/tournaments">
+                  <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
+                    Join Now!
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -214,7 +216,7 @@ const HomePage = () => {
               <strong>Format:</strong> {selectedTournament.format}
             </p>
             <p>
-              <strong>Location:</strong> {selectedTournament.location}
+              <strong>Location:</strong> {selectedTournament.location} 
             </p>
             <p className="mt-4">{selectedTournament.description}</p>
             <div className="flex justify-between mt-6">
@@ -240,13 +242,13 @@ const HomePage = () => {
                 onClick={confirmCancelRegistration}
                 className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg"
               >
-                Confirm
+                Yes
               </button>
               <button
                 onClick={closeCancelModal}
                 className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
               >
-                Close
+                No
               </button>
             </div>
           </div>
@@ -258,4 +260,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePage;
