@@ -53,16 +53,18 @@ const LiveScores = () => {
   };
 
   return (
-    <section className="py-12 bg-black text-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Live Scores</h2>
+    <section className="py-4 bg-black text-white"> {/* Reduced padding from py-6 to py-4 */}
+      <div className="container mx-auto px-2"> {/* Reduced container padding */}
+        <h2 className="text-xl font-semibold text-center mb-4"> {/* Reduced text size */}
+          Live Scores
+        </h2>
         <div className="relative flex items-center">
           <button
             onClick={handlePrev}
-            className="absolute left-0 z-10 p-4 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
+            className="absolute left-0 z-10 p-2 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
           >
             <svg
-              className="w-6 h-6 text-white"
+              className="w-4 h-4 text-white" // Reduced icon size from w-5 h-5 to w-4 h-4
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -81,43 +83,44 @@ const LiveScores = () => {
             {liveScores.map((score, index) => (
               <div
                 key={score.id}
-                className={`flex-shrink-0 snap-center w-full md:w-1/2 lg:w-1/3 px-4 ${
-                  activeIndex === index ? 'opacity-100' : 'opacity-50'
-                } transition-opacity duration-500`}
+                className={`flex-shrink-0 snap-center w-full md:w-1/3 px-2 ${activeIndex === index ? 'opacity-100' : 'opacity-50'
+                  } transition-opacity duration-500`}
               >
-                <div className="bg-white rounded-lg p-6 shadow-lg h-96 text-black">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-semibold">{score.tournament}</h3>
-                    <span className="text-gray-600 text-sm">{score.match}</span>
+                <div className="bg-white rounded-lg p-3 shadow-lg h-60 text-black"> {/* Reduced padding, shadow, and height */}
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-xs font-semibold"> {/* Reduced text size */}
+                      {score.tournament}
+                    </h3>
+                    <span className="text-gray-600 text-xs">{score.match}</span> {/* Reduced text size */}
                   </div>
-                  <div className="flex flex-col space-y-3">
+                  <div className="flex flex-col space-y-1"> {/* Reduced spacing */}
                     {score.teams.map((team, teamIndex) => (
-                      <div key={teamIndex} className="flex items-center space-x-4">
+                      <div key={teamIndex} className="flex items-center space-x-2"> {/* Reduced spacing */}
                         <img
                           src={team.flag}
                           alt={team.name}
-                          className="w-8 h-8 rounded-full"
-                        />
+                          className="w-5 h-5 rounded-full" 
+                        /> {/* Reduced flag size */}
                         <div className="flex flex-col">
-                          <span className="text-lg font-medium">{team.name}</span>
-                          <span className="text-gray-600 text-sm">{team.score}</span>
+                          <span className="text-sm font-medium">{team.name}</span> {/* Reduced text size */}
+                          <span className="text-gray-600 text-xs">{team.score}</span> {/* Reduced text size */}
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="text-gray-600 text-sm">{score.venue}</span>
-                    <span className="text-lg font-medium">{score.result}</span>
+                  <div className="flex justify-between items-center mt-2"> {/* Reduced margin */}
+                    <span className="text-gray-600 text-xs">{score.venue}</span> {/* Reduced text size */}
+                    <span className="text-sm font-medium">{score.result}</span> {/* Reduced text size */}
                   </div>
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="text-gray-600 text-sm">Player of the Match</span>
-                    <div className="flex items-center space-x-2">
+                  <div className="flex justify-between items-center mt-2"> {/* Reduced margin */}
+                    <span className="text-gray-600 text-xs">Player of the Match</span> {/* Reduced text size */}
+                    <div className="flex items-center space-x-1"> {/* Reduced spacing */}
                       <img
                         src={score.playerOfTheMatch.image}
                         alt={score.playerOfTheMatch.name}
-                        className="w-10 h-10 rounded-full"
-                      />
-                      <span className="text-lg font-medium">{score.playerOfTheMatch.name}</span>
+                        className="w-6 h-6 rounded-full"
+                      /> {/* Reduced player image size */}
+                      <span className="text-sm font-medium">{score.playerOfTheMatch.name}</span> {/* Reduced text size */}
                     </div>
                   </div>
                 </div>
@@ -127,10 +130,10 @@ const LiveScores = () => {
 
           <button
             onClick={handleNext}
-            className="absolute right-0 z-10 p-4 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
+            className="absolute right-0 z-10 p-2 rounded-full bg-gray-800 opacity-50 hover:opacity-80 focus:outline-none"
           >
             <svg
-              className="w-6 h-6 text-white"
+              className="w-4 h-4 text-white" // Reduced icon size from w-5 h-5 to w-4 h-4
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

@@ -1,6 +1,6 @@
 import React from 'react';
-import ViratKholi from './assets/player image/virat-kohli.png';
-import Dhoni from './assets/player image/msd.png';
+import ViratKholi from '../../assets/player image/virat-kohli.png';
+import Dhoni from '../../assets/player image/msd.png';
 
 const playersData = [
   {
