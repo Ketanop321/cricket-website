@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ViratKholi from '../../assets/player image/virat-kohli.png';
 import Dhoni from '../../assets/player image/msd.png';
+import PlayerStats from '../../components/playerstats';
 
 const playersData = [
   {
@@ -11,7 +12,7 @@ const playersData = [
     matches: 254,
     runs: 12040,
     highestScore: 183,
-    image: ViratKholi, // Use imageUrl consistently
+    image: ViratKholi,
     bio: 'Virat Kohli is an Indian cricketer and former captain of the India national cricket team.',
   },
   {
@@ -22,7 +23,7 @@ const playersData = [
     matches: 151,
     runs: 7173,
     highestScore: 238,
-    image: Dhoni, // Placeholder image URL
+    image: Dhoni,
     bio: 'Kane Williamson is a New Zealand cricketer who captains the national team across formats.',
   },
   {
@@ -33,13 +34,23 @@ const playersData = [
     matches: 92,
     wickets: 217,
     bestBowling: '6/23',
-    imageUrl: 'https://example.com/pat.jpg', // Placeholder image URL
+    imageUrl: 'https://example.com/pat.jpg',
     bio: 'Pat Cummins is an Australian international cricketer who is the captain of the Australian cricket team.',
   },
   // Add more players as needed
 ];
 
 const PlayerPage = () => {
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+
+  const handleViewStatsClick = (player) => {
+    setSelectedPlayer(player);
+  };
+
+  const handleCloseStats = () => {
+    setSelectedPlayer(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Meet Our Players</h1>
@@ -51,7 +62,7 @@ const PlayerPage = () => {
               <img
                 src={player.image}
                 alt={player.name}
-                className="object-right h-full w-full" // Use object-cover instead of object-contain
+                className="object-right h-full w-full"
               />
             </div>
             <div className="p-6">
@@ -67,7 +78,10 @@ const PlayerPage = () => {
               <p className="text-gray-700 mt-4">{player.bio}</p>
 
               <div className="text-center mt-4">
-                <button className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg">
+                <button
+                  onClick={() => handleViewStatsClick(player)}
+                  className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg"
+                >
                   View Stats
                 </button>
               </div>
@@ -75,6 +89,9 @@ const PlayerPage = () => {
           </div>
         ))}
       </div>
+
+      {/* Conditionally render the PlayerStats component */}
+      {selectedPlayer && <PlayerStats player={selectedPlayer} onClose={handleCloseStats} />}
     </div>
   );
 };
