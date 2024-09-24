@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import Australia from '../../assets/flags/aus.png';
 import NewZealand from '../../assets/flags/nz.png';
+import India from '../../assets/flags/ind.png'
+import Bangladesh from '../../assets/flags/ban.png'
+import Afghanistan from '../../assets/flags/afg.png'
+import SouthAfrica from '../../assets/flags/sa.png'
+import AshGardner from '../../assets/player image/Ash Gardner.png'
+import ShashwatRawat from '../../assets/player image/Shashwat Rawat.png'
+import AsgharAfghan from '../../assets/player image/Asghar_Afghan.png'
 
 const LiveScores = () => {
   const [liveScores] = useState([
@@ -14,31 +21,31 @@ const LiveScores = () => {
       ],
       venue: 'Mackay',
       result: 'AUS-W Won By 29 runs',
-      playerOfTheMatch: { name: 'Ash Gardner', image: '/player1.jpg' },
+      playerOfTheMatch: { name: 'Ash Gardner', image: AshGardner},
     },
     {
       id: 2,
       tournament: 'Duleep Trophy, 2024',
       match: 'Match 6',
       teams: [
-        { name: 'IND', score: '297/10 & 286/8 d', flag: '/ind.png' },
-        { name: 'BAN', score: '234/10 & 217/10', flag: '/ind-c.png' },
+        { name: 'IND', score: '297/10 & 286/8 d', flag: India },
+        { name: 'BAN', score: '234/10 & 217/10', flag: Bangladesh },
       ],
       venue: 'Anantapur',
       result: 'IND Won By 132 runs',
-      playerOfTheMatch: { name: 'Shashwat Rawat', image: '/player2.jpg' },
+      playerOfTheMatch: { name: 'Shashwat Rawat', image: ShashwatRawat },
     },
     {
       id: 3,
       tournament: 'Duleep Trophy, 2024',
       match: 'Match 5',
       teams: [
-        { name: 'AFG', score: '349/10 & 305/10', flag: '/ind-d.png' },
-        { name: 'SA', score: '282/10 & 115/10', flag: '/ind-b.png' },
+        { name: 'AFG', score: '349/10 & 305/10', flag: Afghanistan },
+        { name: 'SA', score: '282/10 & 115/10', flag: SouthAfrica },
       ],
       venue: 'Anantapur',
       result: 'AFG Won By 257 runs',
-      playerOfTheMatch: { name: 'Ricky Bhui', image: '/player3.jpg' },
+      playerOfTheMatch: { name: 'Asghar Afghan', image: AsgharAfghan },
     },
   ]);
 
