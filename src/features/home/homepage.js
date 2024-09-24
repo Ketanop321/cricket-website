@@ -6,7 +6,7 @@ import './cricketstadium.css';
 import CookieConsent from '../../components/cookie';
 import backgroundImage from '../../assets/cricketstadium.png';  // Add your background image
 import background from '../../assets/back.png';
- 
+
 const tournamentsData = [
   {
     id: 1,
@@ -42,6 +42,7 @@ const HomePage = () => {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState(null);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
   // Rotating banner effect
   useEffect(() => {
@@ -57,11 +58,15 @@ const HomePage = () => {
   }, []);
 
   const handleRegisterClick = (tournament) => {
-    setRegisteredTournament(tournament);
+    setCancelModalVisible(false); // Close cancel registration modal
+    setDetailsModalVisible(false); // Close view details modal
     setFormVisible(true);
+    setRegisteredTournament(tournament);
   };
 
   const handleCancelRegistration = () => {
+    setFormVisible(false); // Close registration form
+    setDetailsModalVisible(false); // Close view details modal
     setCancelModalVisible(true);
   };
 
@@ -79,6 +84,8 @@ const HomePage = () => {
   };
 
   const handleViewDetailsClick = (tournament) => {
+    setFormVisible(false); // Close registration form
+    setCancelModalVisible(false); // Close cancel registration modal
     setSelectedTournament(tournament);
     setDetailsModalVisible(true);
   };
@@ -87,8 +94,17 @@ const HomePage = () => {
     setDetailsModalVisible(false);
   };
 
+  const handleCardHover = () => {
+    setIsCardHovered(true);
+  };
+
+  const handleCardLeave = () => {
+    setIsCardHovered(false);
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen relative">
+      {/* Hero Section */}
       <section
         className="text-white py-20 text-center flex items-center justify-center relative"
         style={{
@@ -113,42 +129,26 @@ const HomePage = () => {
       </section>
 
       <CookieConsent />
-
-<<<<<<< HEAD
-      {/* Adding margin to create gap */}
-      <section
-        className="relative py-8 my-12"  // Add 'my-12' to create margin between sections
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-=======
+ 
       {/* Upcoming Tournament Section */}
       <section
         className="relative py-8 my-12"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
->>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
           filter: 'brightness(1.1)', // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
-<<<<<<< HEAD
-          {/* Adding a box-like structure */}
-=======
->>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
           <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg mx-auto w-4/5 md:w-3/5">
             <div className="text-center">
               <h2 className="text-4xl font-bold text-gray-800 drop-shadow-lg">
                 Upcoming Tournament
               </h2>
               <div
-<<<<<<< HEAD
-                className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
-=======
                 className={`mt-6 duration-500 ease transform ${
                   isAnimating ? 'opacity-0' : 'opacity-100'
                 }`}
->>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
               >
                 <h3 className="text-3xl font-extrabold text-gray-900 drop-shadow-lg">
                   {tournamentsData[currentBannerIndex].name}
@@ -172,26 +172,24 @@ const HomePage = () => {
         <RegistrationForm onClose={handleCloseForm} tournament={registeredTournament} />
       )}
 
-      {/* Tournament List */}
+      {/* Tournament List Section */}
       <section className="py-12">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold text-gray-800">Tournaments</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {tournamentsData.map((tournament) => (
-<<<<<<< HEAD
-            <div key={tournament.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-=======
             <div
               key={tournament.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className={`bg-white shadow-lg rounded-lg overflow-hidden tournament-card ${isCardHovered ? 'hover:bg-gray-100' : ''}`}
+              onMouseEnter={handleCardHover}
+              onMouseLeave={handleCardLeave}
             >
->>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
               <div className="bg-green-500 p-4 text-white text-center">
                 <h3 className="text-xl font-semibold">{tournament.name}</h3>
                 <p>{tournament.date}</p>
               </div>
-              <div className="p-4">
+              <div className="p-4 card-content">
                 <p>
                   <strong>Format:</strong> {tournament.format}
                 </p>
@@ -241,17 +239,15 @@ const HomePage = () => {
               <strong>Format:</strong> {selectedTournament.format}
             </p>
             <p>
-              <strong>Location:</strong> {selectedTournament.location} 
+              <strong>Location:</strong> {selectedTournament.location}
             </p>
             <p className="mt-4">{selectedTournament.description}</p>
-            <div className="flex justify-between mt-6">
-              <button
-                onClick={closeDetailsModal}
-                className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
-              >
-                Close
-              </button>
-            </div>
+            <button
+              onClick={closeDetailsModal}
+              className="mt-4 bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -267,13 +263,13 @@ const HomePage = () => {
                 onClick={confirmCancelRegistration}
                 className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg"
               >
-                Yes
+                Yes, Cancel
               </button>
               <button
                 onClick={closeCancelModal}
                 className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
               >
-                No
+                No, Keep
               </button>
             </div>
           </div>
