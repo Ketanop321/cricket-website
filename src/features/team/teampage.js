@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import teamsData from '../team/teamsData'
+import teamsData from '../team/teamsData';
 
 const TeamPage = () => {
-  <teamsData/>
   const navigate = useNavigate();
 
   // Reordering teams as in your request
@@ -15,12 +14,12 @@ const TeamPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {reorderedTeams.map((team) => (
-          <div key={team.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="flex items-center justify-center h-64 bg-gray-200">
+          <div key={team.id} className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+            <div className="flex items-center justify-center h-48 bg-gray-200">
               <img 
                 src={team.logo} 
                 alt={team.name} 
-                className="object-contain h-full w-full"
+                className="object-contain h-full w-full p-4" // Added padding for better spacing
               />
             </div>
             <div className="p-6">
@@ -35,7 +34,7 @@ const TeamPage = () => {
               <div className="text-center mt-4">
                 <button 
                   onClick={() => navigate(`/team/${team.id}`)} // Navigate to the team details page
-                  className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg"
+                  className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg transition duration-200 ease-in-out transform hover:scale-105"
                 >
                   View Team Details
                 </button>
