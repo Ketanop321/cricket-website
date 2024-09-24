@@ -4,7 +4,7 @@ import RegistrationForm from '../registration/registrationform';
 import BackToTopButton from '../../components/backtotop';
 import './cricketstadium.css';
 import CookieConsent from '../../components/cookie';
-import backgroundImage from '../../assets/cricketstadium.png'; // Add your background image
+import backgroundImage from '../../assets/cricketstadium.png';  // Add your background image
 import background from '../../assets/back.png';
  
 const tournamentsData = [
@@ -89,7 +89,6 @@ const HomePage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen relative">
-      {/* Hero Section */}
       <section
         className="text-white py-20 text-center flex items-center justify-center relative"
         style={{
@@ -115,38 +114,36 @@ const HomePage = () => {
 
       <CookieConsent />
 
-      {/* Upcoming Tournament Heading */}
-      <section className="text-center py-12">
-        <h1 className="text-5xl font-extrabold text-gray-800">
-          Upcoming Tournament
-        </h1>
-      </section>
-
-      {/* Upcoming Tournament Section */}
+      {/* Adding margin to create gap */}
       <section
-        className="relative py-1 my-1"
+        className="relative py-8 my-12"  // Add 'my-12' to create margin between sections
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
+          filter: 'brightness(1.1)', // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
-          <div className="text-center">
-            <div
-              className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
-            >
-              <h3 className="text-3xl font-extrabold text-white drop-shadow-lg">
-                {tournamentsData[currentBannerIndex].name}
-              </h3>
-              <p className="text-lg text-white mt-2">
-                {tournamentsData[currentBannerIndex].date}
-              </p>
-              <Link to="/tournaments">
-                <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
-                  Join Now!
-                </button>
-              </Link>
+          {/* Adding a box-like structure */}
+          <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg mx-auto w-4/5 md:w-3/5">
+            <div className="text-center">
+              <h2 className="text-4xl font-bold text-gray-800 drop-shadow-lg">
+                Upcoming Tournament
+              </h2>
+              <div
+                className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+              >
+                <h3 className="text-3xl font-extrabold text-gray-900 drop-shadow-lg">
+                  {tournamentsData[currentBannerIndex].name}
+                </h3>
+                <p className="text-lg text-gray-700 mt-2">
+                  {tournamentsData[currentBannerIndex].date}
+                </p>
+                <Link to="/tournaments">
+                  <button className="mt-6 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-110">
+                    Join Now!
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -157,18 +154,15 @@ const HomePage = () => {
         <RegistrationForm onClose={handleCloseForm} tournament={registeredTournament} />
       )}
 
-      {/* Tournament List Section */}
+      {/* Tournament List */}
       <section className="py-12">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold text-gray-800">Tournaments</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {tournamentsData.map((tournament) => (
-            <div
-              key={tournament.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105"
-            >
-              <div className="bg-green-500 p-4 text-white text-center transition-colors duration-300 hover:bg-green-600">
+            <div key={tournament.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+              <div className="bg-green-500 p-4 text-white text-center">
                 <h3 className="text-xl font-semibold">{tournament.name}</h3>
                 <p>{tournament.date}</p>
               </div>
@@ -184,7 +178,7 @@ const HomePage = () => {
                 {registeredTournament && registeredTournament.id === tournament.id ? (
                   <button
                     onClick={handleCancelRegistration}
-                    className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-red-600"
+                    className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
                   >
                     Cancel Registration
                   </button>
@@ -192,13 +186,13 @@ const HomePage = () => {
                   <div className="flex justify-between mt-4">
                     <button
                       onClick={() => handleRegisterClick(tournament)}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-blue-600"
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg"
                     >
                       Register
                     </button>
                     <button
                       onClick={() => handleViewDetailsClick(tournament)}
-                      className="bg-gray-500 text-white px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-gray-600"
+                      className="bg-gray-500 text-white px-4 py-2 rounded-lg"
                     >
                       View Details
                     </button>
@@ -222,7 +216,7 @@ const HomePage = () => {
               <strong>Format:</strong> {selectedTournament.format}
             </p>
             <p>
-              <strong>Location:</strong> {selectedTournament.location}
+              <strong>Location:</strong> {selectedTournament.location} 
             </p>
             <p className="mt-4">{selectedTournament.description}</p>
             <div className="flex justify-between mt-6">
