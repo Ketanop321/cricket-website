@@ -114,23 +114,41 @@ const HomePage = () => {
 
       <CookieConsent />
 
+<<<<<<< HEAD
       {/* Adding margin to create gap */}
       <section
         className="relative py-8 my-12"  // Add 'my-12' to create margin between sections
         style={{
           backgroundImage: `url(${backgroundImage})`,
+=======
+      {/* Upcoming Tournament Section */}
+      <section
+        className="relative py-8 my-12"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+>>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
           filter: 'brightness(1.1)', // Make the background image slightly brighter
         }}
       >
         <div className="bg-gradient-to-r from-black/40 via-transparent to-black/40 py-8">
+<<<<<<< HEAD
           {/* Adding a box-like structure */}
+=======
+>>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
           <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg mx-auto w-4/5 md:w-3/5">
             <div className="text-center">
               <h2 className="text-4xl font-bold text-gray-800 drop-shadow-lg">
                 Upcoming Tournament
               </h2>
               <div
+<<<<<<< HEAD
                 className={`mt-6 duration-500 ease transform ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+=======
+                className={`mt-6 duration-500 ease transform ${
+                  isAnimating ? 'opacity-0' : 'opacity-100'
+                }`}
+>>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
               >
                 <h3 className="text-3xl font-extrabold text-gray-900 drop-shadow-lg">
                   {tournamentsData[currentBannerIndex].name}
@@ -149,7 +167,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Registration Form   */}
+      {/* Registration Form */}
       {isFormVisible && (
         <RegistrationForm onClose={handleCloseForm} tournament={registeredTournament} />
       )}
@@ -161,7 +179,14 @@ const HomePage = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {tournamentsData.map((tournament) => (
+<<<<<<< HEAD
             <div key={tournament.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+=======
+            <div
+              key={tournament.id}
+              className="bg-white shadow-lg rounded-lg overflow-hidden"
+            >
+>>>>>>> 85ae3ed697fd558094107bbf8b3386d87cfc871c
               <div className="bg-green-500 p-4 text-white text-center">
                 <h3 className="text-xl font-semibold">{tournament.name}</h3>
                 <p>{tournament.date}</p>
