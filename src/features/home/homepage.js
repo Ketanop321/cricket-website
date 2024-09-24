@@ -152,7 +152,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Registration Form */}
+      {/* Registration Form   */}
       {isFormVisible && (
         <RegistrationForm onClose={handleCloseForm} tournament={registeredTournament} />
       )}
