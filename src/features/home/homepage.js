@@ -42,6 +42,7 @@ const HomePage = () => {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedTournament, setSelectedTournament] = useState(null);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
   // Rotating banner effect
   useEffect(() => {
@@ -57,11 +58,15 @@ const HomePage = () => {
   }, []);
 
   const handleRegisterClick = (tournament) => {
-    setRegisteredTournament(tournament);
+    setCancelModalVisible(false); // Close cancel registration modal
+    setDetailsModalVisible(false); // Close view details modal
     setFormVisible(true);
+    setRegisteredTournament(tournament);
   };
 
   const handleCancelRegistration = () => {
+    setFormVisible(false); // Close registration form
+    setDetailsModalVisible(false); // Close view details modal
     setCancelModalVisible(true);
   };
 
@@ -79,12 +84,22 @@ const HomePage = () => {
   };
 
   const handleViewDetailsClick = (tournament) => {
+    setFormVisible(false); // Close registration form
+    setCancelModalVisible(false); // Close cancel registration modal
     setSelectedTournament(tournament);
     setDetailsModalVisible(true);
   };
 
   const closeDetailsModal = () => {
     setDetailsModalVisible(false);
+  };
+
+  const handleCardHover = () => {
+    setIsCardHovered(true);
+  };
+
+  const handleCardLeave = () => {
+    setIsCardHovered(false);
   };
 
   return (
@@ -114,7 +129,7 @@ const HomePage = () => {
       </section>
 
       <CookieConsent />
-
+ 
       {/* Upcoming Tournament Section */}
       <section
         className="relative py-8 my-12"
@@ -166,13 +181,15 @@ const HomePage = () => {
           {tournamentsData.map((tournament) => (
             <div
               key={tournament.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className={`bg-white shadow-lg rounded-lg overflow-hidden tournament-card ${isCardHovered ? 'hover:bg-gray-100' : ''}`}
+              onMouseEnter={handleCardHover}
+              onMouseLeave={handleCardLeave}
             >
               <div className="bg-green-500 p-4 text-white text-center">
                 <h3 className="text-xl font-semibold">{tournament.name}</h3>
                 <p>{tournament.date}</p>
               </div>
-              <div className="p-4">
+              <div className="p-4 card-content">
                 <p>
                   <strong>Format:</strong> {tournament.format}
                 </p>
@@ -225,14 +242,12 @@ const HomePage = () => {
               <strong>Location:</strong> {selectedTournament.location}
             </p>
             <p className="mt-4">{selectedTournament.description}</p>
-            <div className="flex justify-between mt-6">
-              <button
-                onClick={closeDetailsModal}
-                className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
-              >
-                Close
-              </button>
-            </div>
+            <button
+              onClick={closeDetailsModal}
+              className="mt-4 bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -248,13 +263,13 @@ const HomePage = () => {
                 onClick={confirmCancelRegistration}
                 className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg"
               >
-                Yes
+                Yes, Cancel
               </button>
               <button
                 onClick={closeCancelModal}
                 className="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded-lg"
               >
-                No
+                No, Keep
               </button>
             </div>
           </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ViratKholi from '../../assets/player image/virat-kohli.png';
 import Dhoni from '../../assets/player image/msd.png';
 import PlayerStats from '../../components/playerstats';
+import PlayerStats from './PlayerStats'; // Import the new PlayerStats component
 
 const playersData = [
   {
@@ -14,6 +15,13 @@ const playersData = [
     highestScore: 183,
     image: ViratKholi,
     bio: 'Virat Kohli is an Indian cricketer and former captain of the India national cricket team.',
+    recentPerformances: [
+      { score: '72', opposition: 'Australia', date: '2024-09-01' },
+      { score: '45', opposition: 'England', date: '2024-08-25' },
+      { score: '100', opposition: 'Pakistan', date: '2024-08-15' },
+      { score: '88', opposition: 'South Africa', date: '2024-08-10' },
+      { score: '54', opposition: 'Sri Lanka', date: '2024-08-05' },
+    ],
   },
   {
     id: 2,
@@ -25,6 +33,13 @@ const playersData = [
     highestScore: 238,
     image: Dhoni,
     bio: 'Kane Williamson is a New Zealand cricketer who captains the national team across formats.',
+    recentPerformances: [
+      { score: '35', opposition: 'India', date: '2024-09-02' },
+      { score: '60', opposition: 'Bangladesh', date: '2024-08-28' },
+      { score: '88', opposition: 'Pakistan', date: '2024-08-20' },
+      { score: '40', opposition: 'Sri Lanka', date: '2024-08-14' },
+      { score: '50', opposition: 'Australia', date: '2024-08-10' },
+    ],
   },
   {
     id: 3,
@@ -35,7 +50,15 @@ const playersData = [
     wickets: 217,
     bestBowling: '6/23',
     imageUrl: 'https://example.com/pat.jpg',
+    image: 'https://example.com/pat.jpg',
     bio: 'Pat Cummins is an Australian international cricketer who is the captain of the Australian cricket team.',
+    recentPerformances: [
+      { score: '1/23', opposition: 'India', date: '2024-09-01' },
+      { score: '2/15', opposition: 'New Zealand', date: '2024-08-28' },
+      { score: '3/40', opposition: 'South Africa', date: '2024-08-20' },
+      { score: '0/50', opposition: 'England', date: '2024-08-14' },
+      { score: '4/30', opposition: 'Pakistan', date: '2024-08-10' },
+    ],
   },
   // Add more players as needed
 ];
@@ -48,6 +71,15 @@ const PlayerPage = () => {
   };
 
   const handleCloseStats = () => {
+  const [isStatsVisible, setStatsVisible] = useState(false);
+
+  const handleViewStats = (player) => {
+    setSelectedPlayer(player);
+    setStatsVisible(true);
+  };
+
+  const closeStats = () => {
+    setStatsVisible(false);
     setSelectedPlayer(null);
   };
 
@@ -63,6 +95,7 @@ const PlayerPage = () => {
                 src={player.image}
                 alt={player.name}
                 className="object-right h-full w-full"
+                className="object-cover h-full w-full"
               />
             </div>
             <div className="p-6">
@@ -82,6 +115,7 @@ const PlayerPage = () => {
                   onClick={() => handleViewStatsClick(player)}
                   className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg"
                 >
+                <button onClick={() => handleViewStats(player)} className="bg-blue-500 hover:bg-blue-400 text-white px-6 py-2 rounded-lg">
                   View Stats
                 </button>
               </div>
@@ -92,6 +126,9 @@ const PlayerPage = () => {
 
       {/* Conditionally render the PlayerStats component */}
       {selectedPlayer && <PlayerStats player={selectedPlayer} onClose={handleCloseStats} />}
+      {isStatsVisible && selectedPlayer && (
+        <PlayerStats player={selectedPlayer} onClose={closeStats} />
+      )}
     </div>
   );
 };
