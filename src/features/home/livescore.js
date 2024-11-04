@@ -3,14 +3,16 @@ import React, { useState, useEffect } from 'react';
 const LiveScores = () => {
   const [liveScores, setLiveScores] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const API_KEY = '2574e714-bb57-4577-92bf-9aeed9981e6c';
+  const API_KEY = process.env.REACT_APP_CRIC_API_KEY;
 
   // Function to fetch live scores from CricAPI
   const fetchLiveScores = async () => {
     try {
       const response = await fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${API_KEY}`);
       const data = await response.json();
-
+  
+      console.log(data); // Log to inspect the response structure
+  
       if (data.status === "success") {
         setLiveScores(data.data);
       } else {
@@ -20,6 +22,7 @@ const LiveScores = () => {
       console.error('Error fetching live scores:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchLiveScores();
