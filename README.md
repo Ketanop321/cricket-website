@@ -33,3 +33,4 @@ npm install or npm i
 npm start
 ```
 #### This command will start the development server, and the website will be available at `http://localhost:3000` in your browser.
+Happy open contribution
