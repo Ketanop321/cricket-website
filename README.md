@@ -1,6 +1,5 @@
 We(me and @gamerking177) build this project for WebBuzz: Web Development Challenge(Hackathon) and we got the 144 rank among 2500 people. 
-The api used in this project have a limit means after getting called   time your CricAPI key will exceeded the daily hit limit and stop showing the data.It gets call in every 5 minute.
-To setup the project and get the api key u can dm me.
+
 
 # 🚀 Setting Up the Project
 #### Follow these steps to set up the project on your local machine:
