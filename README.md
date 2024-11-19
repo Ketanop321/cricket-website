@@ -1,6 +1,5 @@
 We(me and @gamerking177) build this project for WebBuzz: Web Development Challenge(Hackathon) and we got the 144 rank among 2500 people. 
 
-
 # 🚀 Setting Up the Project
 #### Follow these steps to set up the project on your local machine:
 
